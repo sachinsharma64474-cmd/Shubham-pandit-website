@@ -1,0 +1,67 @@
+/* HERITAGE */
+
+.card{
+
+transition:.3s;
+
+overflow:hidden;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 0px 25px 5px rgba(0,0,0,.15);
+
+}
+
+.card img{
+
+transition:.4s;
+
+}
+
+.card:hover img{
+
+transform:scale(1.05);
+
+}
+
+.card-title{
+
+font-weight:700;
+
+}
+
+@media(max-width:768px){
+
+.card img{
+
+height:220px !important;
+
+}
+
+h1{
+
+font-size:30px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.card img{
+
+height:190px !important;
+
+}
+
+.card-body{
+
+padding:18px;
+
+}
+
+}

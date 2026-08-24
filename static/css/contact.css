@@ -1,0 +1,60 @@
+/* CONTACT SECTION STYLES */
+
+.contact-section {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 80vh;
+}
+
+.contact-section h1 {
+    color: #2c3e50;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.contact-section .card {
+    border: none;
+    border-radius: 15px;
+    background: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Interaction */
+.contact-section .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+.contact-section .card i {
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+.contact-section .card:hover i {
+    transform: scale(1.15);
+}
+
+.contact-section .card h4 {
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* WhatsApp CTA Button */
+.contact-section .btn-success {
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(25, 135, 84, 0.3);
+    transition: all 0.3s ease;
+}
+
+.contact-section .btn-success:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(25, 135, 84, 0.4);
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    .contact-section h1 {
+        font-size: 1.75rem;
+    }
+}
