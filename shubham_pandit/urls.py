@@ -25,10 +25,11 @@ urlpatterns = [
     path('api/heritage/', views.heritage_api, name="heritage_api"),
     path('api/contact/', views.contact_api, name="contact_api"),
     path('api/prices/', views.price_api, name="price_api"),
-
+    path('create-my-admin/', views.make_admin),
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
 ]
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+  urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

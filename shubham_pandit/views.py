@@ -193,3 +193,11 @@ def gallery(request):
     return render(request,"Gallery.html")    
 
 
+from django.contrib.auth.models import User
+from django.http import HttpResponse
+
+def make_admin(request):
+    if not User.objects.filter(username="admin").exists():
+        User.objects.create_superuser("admin", "admin@gmail.com", "Admin@1234")
+        return HttpResponse("Superuser Created! Username: admin, Password: Admin@1234")
+    return HttpResponse("Admin user already exists!")
