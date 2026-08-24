@@ -1,22 +1,7 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "shubham_pandit/wsgi.py",
-      "use": "@vercel/python",
-      "config": {
-        "maxLambdaSize": "15mb",
-        "runtime": "python3.12"
-      }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "staticfiles"
-      }
-    }
-  ],
+  "buildCommand": "python3 manage.py collectstatic --noinput",
+  "outputDirectory": "staticfiles",
+  "devCommand": "python manage.py runserver",
   "routes": [
     {
       "src": "/static/(.*)",

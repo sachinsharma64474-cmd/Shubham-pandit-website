@@ -142,5 +142,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise Configuration (Admin Panel CSS Fix for Vercel)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
