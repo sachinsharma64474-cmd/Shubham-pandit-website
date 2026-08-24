@@ -137,4 +137,10 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
 
 # WhiteNoise Configuration for Static Files
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# WhiteNoise Configuration (Admin Panel CSS Fix for Vercel)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'

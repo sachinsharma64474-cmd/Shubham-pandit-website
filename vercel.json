@@ -5,27 +5,6 @@
       "src": "shubham_pandit/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "shubham_pandit/wsgi.py"
-    }
-  ]
-}
-
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "shubham_pandit/wsgi.py",
-      "use": "@vercel/python",
-      "config": { "maxLambdaSize": "15mb", "runtime": "python3.12" }
     },
     {
       "src": "build_files.sh",
@@ -37,10 +16,6 @@
     {
       "src": "/static/(.*)",
       "dest": "/static/$1"
-    },
-    {
-      "src": "/media/(.*)",
-      "dest": "/media/$1"
     },
     {
       "src": "/(.*)",
