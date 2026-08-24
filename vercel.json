@@ -1,17 +1,7 @@
+// BEFORE
 {
-  "version": 2,
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/static/$1"
-    },
-    {
-      "src": "/media/(.*)",
-      "dest": "/media/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "shubham_pandit/wsgi.py"
-    }
+  "builds": [
+    { "src": "...", "use": "..." }
   ]
 }
+
