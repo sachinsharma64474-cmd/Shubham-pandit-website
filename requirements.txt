@@ -4,3 +4,4 @@ django-tinymce
 python-dotenv
 pymysql
 cryptography
+whitenoise
