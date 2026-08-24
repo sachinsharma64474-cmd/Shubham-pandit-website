@@ -76,8 +76,9 @@ WSGI_APPLICATION = 'shubham_pandit.wsgi.application'
 
 # Database Setup
 # Database Setup
+# Database Setup
 DATABASES = {
- 'default': {
+    'default': {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
         'NAME': os.getenv('DB_NAME', 'defaultdb'),
         'USER': os.getenv('DB_USER', 'avnadmin'),
@@ -86,12 +87,11 @@ DATABASES = {
         'PORT': os.getenv('DB_PORT', '20485'),
         'OPTIONS': {
             'ssl': {
-                'ssl_mode': 'REQUIRED'
+                'check_hostname': False,
             }
         }
     }
 }
-
 # Cache configuration
 CACHES = {
     'default': {
