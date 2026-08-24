@@ -14,3 +14,14 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shubham_pandit.settings')
 
 application = get_wsgi_application()
+
+
+import os
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shubham_pandit.settings')
+
+application = get_wsgi_application()
+
+# Vercel Serverless Function ke liye zaroori hai
+app = application
