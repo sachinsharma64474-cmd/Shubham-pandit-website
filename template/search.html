@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <h2 class="mb-4">
+        Search Results for: "{{ query }}"
+    </h2>
+
+    <!-- Pooja Services -->
+
+    <h3 class="mb-3">Pooja Services</h3>
+
+    <div class="row">
+
+        {% for s in services %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card h-100 shadow">
+
+                {% if s.img %}
+                <img src="{{ s.img.url }}"
+                     class="card-img-top"
+                     style="height:220px;object-fit:cover;"
+                     alt="{{ s.title }}">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5>{{ s.title }}</h5>
+
+                    <p>
+                        {{ s.describe|striptags|truncatewords:20 }}
+                    </p>
+
+                    <div class="mt-auto">
+
+                        <a href="{% url 'pooja_detail' s.id %}"
+                           class="btn btn-success w-100">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+            <p>No Service Found</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <hr class="my-5">
+
+    <!-- Heritage Places -->
+
+    <h3 class="mb-3">Heritage Places</h3>
+
+    <div class="row">
+
+        {% for p in places %}
+
+        <div class="col-lg-4 col-md-6 mb-4">
+
+            <div class="card h-100 shadow">
+
+                {% if p.image %}
+                <img src="{{ p.image.url }}"
+                     class="card-img-top"
+                     style="height:220px;object-fit:cover;"
+                     alt="{{ p.title }}">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5>{{ p.title }}</h5>
+
+                    <p>
+                        {{ p.description|truncatewords:20 }}
+                    </p>
+
+                    <div class="mt-auto">
+
+                        <a href="{% url 'heritage_detail' p.slug %}"
+                           class="btn btn-success w-100">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+            <p>No Heritage Place Found</p>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

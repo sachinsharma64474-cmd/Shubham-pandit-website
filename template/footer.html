@@ -1,0 +1,50 @@
+<footer class="footer mt-5 bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-warning">Pandit Ji</h4>
+                <p>Experienced Pandit Ji providing all types of Puja, Path, Havan, Grah Shanti, and Vedic rituals with complete devotion.</p>
+            </div>
+            
+            <!-- Services -->
+        <!-- Our Services in footer.html -->
+<div class="col-lg-3 col-md-6">
+    <h4 class="text-warning">Our Services</h4>
+    <ul class="list-unstyled">
+        <!-- 🌟 '|slice:":5"' lagane se sirf 5 items hi render honge -->
+        {% for pooja in footer_poojas|slice:":5" %}
+            <li class="mb-1">
+                <a href="{% url 'pooja_detail' pooja.id %}" class="text-white-50 text-decoration-none">
+                    {{ pooja.title }}
+                </a>
+            </li>
+        {% empty %}
+            <li><span class="text-white-50">No Pooja Available</span></li>
+        {% endfor %}
+    </ul>
+</div>
+
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-warning">Quick Links</h4>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'home' %}" class="text-white-50 text-decoration-none">Home</a></li>
+                    <li><a href="{% url 'about' %}" class="text-white-50 text-decoration-none">About</a></li>
+                    <li><a href="{% url 'service' %}" class="text-white-50 text-decoration-none">Services</a></li>
+                    <li><a href="{% url 'heritage' %}" class="text-white-50 text-decoration-none">Heritage</a></li>
+                    <li><a href="{% url 'gallery' %}" class="text-white-50 text-decoration-none">Gallery</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <h4 class="text-warning">Contact</h4>
+                                <a href="https://maps.app.goo.gl/ZVSHMvZzXLfx7mJw8" target="_blank" rel="noopener noreferrer" class="text-decoration-none text-reset">
+                <p class="mb-1">📍 Ujjain, Madhya Pradesh, India</p></a>
+                <p class="mb-1">📞 <a href="tel:+919131648738" class="text-white-50 text-decoration-none">+91 9131648738</a></p>
+                <p class="mb-1">📧 <a href="mailto:panditji@gmail.com" class="text-white-50 text-decoration-none">panditji@gmail.com</a></p>
+            </div>
+        </div>
+        <hr class="border-secondary my-4">
+        <div class="text-center py-2 text-white-50">
+            © 2026 Shubham Pandit Ji | All Rights Reserved 🙏
+        </div>
+    </div>
+</footer>

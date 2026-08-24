@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="row g-5">
+
+        <!-- Image -->
+
+        <div class="col-lg-5">
+
+            <div class="card shadow border-0 rounded-4">
+
+                {% if pooja.img %}
+
+                <img src="{{ pooja.img.url }}"
+                     class="card-img-top rounded-top-4"
+                     alt="{{ pooja.title }}">
+
+                {% else %}
+
+                <img src="{% static 'image/default.jpg' %}"
+                     class="card-img-top rounded-top-4">
+
+                {% endif %}
+
+                <div class="card-body text-center">
+
+                    <h5 class="text-muted">
+
+                        Dakshina
+
+                    </h5>
+
+                    {% if pooja.discount_price %}
+
+                    <h2>
+
+                        <span class="text-danger">
+
+                            ₹{{ pooja.discount_price }}
+
+                        </span>
+
+                    </h2>
+
+                    <del class="text-muted">
+
+                        ₹{{ pooja.price }}
+
+                    </del>
+
+                    {% else %}
+
+                    <h2 class="text-success">
+
+                        ₹{{ pooja.price }}
+
+                    </h2>
+
+                    {% endif %}
+
+                    <a href="{% url 'book_pooja_service' pooja.id %}"
+                       class="btn btn-success btn-lg w-100 mt-3">
+
+                        📿 Book This Pooja
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Details -->
+
+        <div class="col-lg-7">
+
+            {% if pooja.badge %}
+
+            <span class="badge bg-danger mb-3">
+
+                {{ pooja.badge }}
+
+            </span>
+
+            {% endif %}
+
+            <h1 class="fw-bold">
+
+                {{ pooja.title }}
+
+            </h1>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        ⏰
+
+                        <strong>Duration</strong>
+
+                        <br>
+
+                        {{ pooja.duration }}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        📦
+
+                        <strong>Samagri</strong>
+
+                        <br>
+
+                        {% if pooja.samagri_included %}
+
+                        Included
+
+                        {% else %}
+
+                        Not Included
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 mb-3">
+
+                    <div class="border rounded p-3 h-100">
+
+                        💻
+
+                        <strong>Mode</strong>
+
+                        <br>
+
+                        {% if pooja.is_online_available %}
+
+                        Online + Offline
+
+                        {% else %}
+
+                        Offline
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h3>
+
+                Pooja Description
+
+            </h3>
+
+            <div class="mt-3">
+
+                {{ pooja.describe|safe }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

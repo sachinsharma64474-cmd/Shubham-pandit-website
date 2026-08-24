@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-xl-8 col-lg-9 col-md-10">
+            <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h2 class="mb-2">🕉️ Book Your Pooja</h2>
+                    <p class="mb-0">Fill your details carefully.</p>
+                </div>
+
+                <div class="card-body p-4 p-lg-5">
+                    <!-- novalidate se browser ka default popup band ho jayega -->
+                    <form method="POST" id="bookingForm" novalidate>
+                        {% csrf_token %}
+
+                        {% if selected_pooja %}
+                        <div class="alert alert-success">
+                            <strong>Selected Pooja :</strong> {{ selected_pooja.title }}
+                        </div>
+                        {% else %}
+                        <div class="mb-4 form-group-custom">
+                            <label class="form-label fw-bold">Select Pooja *</label>
+                            <select name="pooja" id="id_pooja" class="form-select" required>
+                                <option value="">-- Select Pooja --</option>
+                                {% for p in poojas %}
+                                <option value="{{ p.id }}">{{ p.title }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">Kripya Pooja Select karein.</div>
+                        </div>
+                        {% endif %}
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">Full Name *</label>
+                                {{ form.full_name }}
+                                <div class="invalid-feedback">Naam kam se kam 3 letters ka hona chahiye.</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">Mobile *</label>
+                                {{ form.mobile }}
+                                <div class="invalid-feedback">Sahi 10-digit Mobile Number dalein (6-9 se shuru hone wala).</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">Email</label>
+                                {{ form.email }}
+                                <div class="invalid-feedback">Kripya Sahi Email ID dalein.</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">City *</label>
+                                {{ form.city }}
+                                <div class="invalid-feedback">City ka naam bharna zaroori hai.</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">State *</label>
+                                {{ form.state }}
+                                <div class="invalid-feedback">State ka naam bharna zaroori hai.</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">Pincode *</label>
+                                {{ form.pincode }}
+                                <div class="invalid-feedback">6-digit ka valid Pincode dalein.</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">Pooja Date *</label>
+                                {{ form.pooja_date }}
+                                <div class="invalid-feedback">Pooja ki valid date select karein.</div>
+                            </div>
+
+                            <div class="col-md-6 mb-3 form-group-custom">
+                                <label class="form-label">Preferred Time *</label>
+                                {{ form.pooja_time }}
+                                <div class="invalid-feedback">Pooja ka samay (Time) select karein.</div>
+                            </div>
+
+                            <div class="col-12 mb-4 form-group-custom">
+                                <label class="form-label">Address *</label>
+                                {{ form.address }}
+                                <div class="invalid-feedback">Poora pata (Address) sahi se bharein (Min. 5 letters).</div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-3 d-md-flex justify-content-md-center">
+                            <button type="submit" class="btn btn-success btn-lg px-5">
+                                📿 Book Now
+                            </button>
+                            <a href="javascript:history.back()" class="btn btn-outline-secondary btn-lg px-5">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Error styling -->
+<style>
+    .is-invalid {
+        border-color: #dc3545 !important;
+        background-image: none !important;
+    }
+    .invalid-feedback {
+        display: none;
+        color: #dc3545;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        font-weight: 500;
+    }
+    .is-invalid ~ .invalid-feedback {
+        display: block;
+    }
+</style>
+
+<!-- Inline Validation Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const bookingForm = document.getElementById("bookingForm");
+
+    const fields = {
+        fullName: document.querySelector("#bookingForm [name='full_name']"),
+        mobile: document.querySelector("#bookingForm [name='mobile']"),
+        email: document.querySelector("#bookingForm [name='email']"),
+        city: document.querySelector("#bookingForm [name='city']"),
+        state: document.querySelector("#bookingForm [name='state']"),
+        pincode: document.querySelector("#bookingForm [name='pincode']"),
+        poojaDate: document.querySelector("#bookingForm [name='pooja_date']"),
+        poojaTime: document.querySelector("#bookingForm [name='pooja_time']"),
+        address: document.querySelector("#bookingForm [name='address']"),
+        poojaSelect: document.querySelector("#bookingForm [name='pooja']")
+    };
+
+    // Form control classes assign karna
+    Object.values(fields).forEach(field => {
+        if (field && !field.classList.contains('form-control') && !field.classList.contains('form-select')) {
+            if (field.tagName === 'SELECT') {
+                field.classList.add('form-select');
+            } else {
+                field.classList.add('form-control');
+            }
+        }
+    });
+
+    // Past Date (Purani taarik) disable karna
+    if (fields.poojaDate) {
+        const today = new Date().toISOString().split("T")[0];
+        fields.poojaDate.setAttribute("min", today);
+    }
+
+    // Numbers input control
+    if (fields.mobile) {
+        fields.mobile.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, "").slice(0, 10);
+            showError(this, false);
+        });
+    }
+
+    if (fields.pincode) {
+        fields.pincode.addEventListener("input", function () {
+            this.value = this.value.replace(/[^0-9]/g, "").slice(0, 6);
+            showError(this, false);
+        });
+    }
+
+    // Helper functions for showing/clearing errors
+    function showError(input, isError) {
+        if (!input) return;
+        if (isError) {
+            input.classList.add("is-invalid");
+        } else {
+            input.classList.remove("is-invalid");
+        }
+    }
+
+    // Typing start hote hi red error border hatana
+    Object.values(fields).forEach(input => {
+        if (input) {
+            input.addEventListener("input", function() {
+                if (this.classList.contains("is-invalid")) {
+                    showError(this, false);
+                }
+            });
+            input.addEventListener("change", function() {
+                if (this.classList.contains("is-invalid")) {
+                    showError(this, false);
+                }
+            });
+        }
+    });
+
+    // Form Submission Check
+    bookingForm.addEventListener("submit", function (e) {
+        let isValid = true;
+        let firstInvalidInput = null;
+
+        // 1. Pooja Select Check
+        if (fields.poojaSelect && fields.poojaSelect.value.trim() === "") {
+            showError(fields.poojaSelect, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.poojaSelect;
+        } else {
+            showError(fields.poojaSelect, false);
+        }
+
+        // 2. Full Name
+        if (!fields.fullName || fields.fullName.value.trim().length < 3) {
+            showError(fields.fullName, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.fullName;
+        } else {
+            showError(fields.fullName, false);
+        }
+
+        // 3. Mobile Number (10 digits starting with 6-9)
+        const phonePattern = /^[6-9]\d{9}$/;
+        if (!fields.mobile || !phonePattern.test(fields.mobile.value.trim())) {
+            showError(fields.mobile, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.mobile;
+        } else {
+            showError(fields.mobile, false);
+        }
+
+        // 4. Email (Optional, lekin fill kiya to correct pattern)
+        if (fields.email && fields.email.value.trim() !== "") {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(fields.email.value.trim())) {
+                showError(fields.email, true);
+                isValid = false;
+                firstInvalidInput = firstInvalidInput || fields.email;
+            } else {
+                showError(fields.email, false);
+            }
+        }
+
+        // 5. City
+        if (!fields.city || fields.city.value.trim() === "") {
+            showError(fields.city, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.city;
+        } else {
+            showError(fields.city, false);
+        }
+
+        // 6. State
+        if (!fields.state || fields.state.value.trim() === "") {
+            showError(fields.state, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.state;
+        } else {
+            showError(fields.state, false);
+        }
+
+        // 7. Pincode (6 digits)
+        const pincodePattern = /^\d{6}$/;
+        if (!fields.pincode || !pincodePattern.test(fields.pincode.value.trim())) {
+            showError(fields.pincode, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.pincode;
+        } else {
+            showError(fields.pincode, false);
+        }
+
+        // 8. Pooja Date
+        if (!fields.poojaDate || fields.poojaDate.value.trim() === "") {
+            showError(fields.poojaDate, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.poojaDate;
+        } else {
+            showError(fields.poojaDate, false);
+        }
+
+        // 9. Pooja Time
+        if (!fields.poojaTime || fields.poojaTime.value.trim() === "") {
+            showError(fields.poojaTime, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.poojaTime;
+        } else {
+            showError(fields.poojaTime, false);
+        }
+
+        // 10. Address
+        if (!fields.address || fields.address.value.trim().length < 5) {
+            showError(fields.address, true);
+            isValid = false;
+            firstInvalidInput = firstInvalidInput || fields.address;
+        } else {
+            showError(fields.address, false);
+        }
+
+        // Agar koi galti milegi to submission ruk kar pehle galat input par scroll kar dega
+        if (!isValid) {
+            e.preventDefault();
+            if (firstInvalidInput) {
+                firstInvalidInput.focus();
+                firstInvalidInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    });
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ================= HERO SLIDER ================= -->
+<div id="panditCarousel" class="carousel slide carousel-fade shadow" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'image/ganeshji.jfif' %}" class="d-block w-100" alt="Ganesh Puja">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="fw-bold">Kundli Milan</h2>
+                <p>Vedic Astrology Consultation</p>
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">Contact Now</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'image/mahakal2.jpg' %}" class="d-block w-100" alt="Mahakal Puja">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="fw-bold">Griha Pravesh Puja</h2>
+                <p>Shubh Muhurat ke saath Sampann</p>
+                <a href="{% url 'service' %}" class="btn btn-warning btn-lg">View Services</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'image/ganga_arti.jpg' %}" class="d-block w-100" alt="Ganga Aarti">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="fw-bold">Vedic Puja & Havan</h2>
+                <p>Shanti, Samriddhi aur Safalta ke liye</p>
+                <a href="{% url 'service' %}" class="btn btn-success btn-lg">Book Pandit Ji</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#panditCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#panditCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section class="container py-5">
+    <div class="row align-items-center gy-4">
+        <div class="col-lg-8">
+            <h1 class="display-5 fw-bold mb-3">🕉️ Pandit Shubham Ji</h1>
+            <h4 class="text-muted mb-4">Vedic Puja & Astrology Expert</h4>
+            <p class="lead">Pandit Shubham Ji ek anubhavi aur vidwan Vedic Pandit hain jo shuddh vidhi-vidhan ke saath sabhi prakar ki puja, havan aur dharmik anushthan sampann karte hain.</p>
+            <p>Griha Pravesh, Satyanarayan Katha, Rudrabhishek, Navgrah Shanti, Vastu Shanti, Kundli Milan, Vivah Sanskar, Mundan Sanskar adi sabhi puja sampurn shraddha aur Vedic paddhati se karayi jati hain.</p>
+            <a href="{% url 'service' %}" class="btn btn-success btn-lg mt-2">Explore Services</a>
+        </div>
+        <div class="col-lg-4 text-center">
+           <img src="{% static 'image/pandit_ji.jpeg' %}" 
+     class="img-fluid rounded-4 shadow-lg object-fit-cover" 
+     alt="Pandit Shubham Ji" 
+     width="400" 
+     height="400">
+        </div>
+    </div>
+</section>
+
+<!-- ================= WHY CHOOSE US ================= -->
+<section class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">Why Choose Us</h2>
+        <p class="text-muted">Shuddh Vedic Vidhi • Trusted Service • Experienced Pandit</p>
+    </div>
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="bi bi-award display-4 text-warning mb-3"></i>
+                <h5>Experienced</h5>
+                <p class="text-muted">10+ Years of Vedic Puja Experience.</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="bi bi-book display-4 text-success mb-3"></i>
+                <h5>Pure Rituals</h5>
+                <p class="text-muted">Complete Vedic Mantras & Traditional Method.</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="bi bi-cash-coin display-4 text-primary mb-3"></i>
+                <h5>Transparent Charges</h5>
+                <p class="text-muted">No Hidden Charges.</p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="card h-100 shadow-sm border-0 text-center p-4">
+                <i class="bi bi-people display-4 text-danger mb-3"></i>
+                <h5>Trusted Families</h5>
+                <p class="text-muted">Hundreds of Happy Devotees.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="container mb-5">
+    <div class="bg-warning rounded-4 shadow-lg p-5 text-center">
+        <h2 class="fw-bold mb-3">🕉️ Book Your Puja Today</h2>
+        <p class="lead">Shuddh Vedic Vidhi ke saath apni Puja Book kijiye.</p>
+        <a href="{% url 'contact' %}" class="btn btn-success btn-lg px-5">Book Now</a>
+    </div>
+</section>
+
+{% endblock %}

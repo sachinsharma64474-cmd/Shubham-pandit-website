@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main class="container py-5">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h1 class="fw-bold">About Pandit Ji</h1>
+            <hr class="w-25 mx-auto border-warning border-2">
+        </div>
+    </div>
+
+    <!-- Details -->
+    <div class="row mb-5">
+        <div class="col-lg-10 mx-auto">
+            <p class="lead text-secondary">
+                Pandit Shubham Ji ek anubhavi aur vidwan Vedic Pandit hain, jo shuddh vidhi-vidhan ke saath puja-path aur dharmik anushthan sampann karte hain. Unhe Vedas, Puran, Jyotish aur Hindu Sanskar Vidhi ka gehra gyaan hai.
+            </p>
+            <p>
+                Pandit Ji dwara Griha Pravesh, Satyanarayan Katha, Rudrabhishek, Havan, Navgraha Shanti, Kundli Milan, Vastu Shanti, Mundan Sanskar, Vivah Sanskar jaise anek puja-anushthan shraddha aur niyam ke saath karaye jaate hain.
+            </p>
+            <p>
+                Jyotish ke madhyam se Pandit Ji kundli vishleshan, grah dosh nivaran, vivaah, career, vyapar aur jeevan sambandhi samasyaon ka sahi margdarshan dete hain.
+            </p>
+            <p class="fw-semibold">
+                Unka uddeshya hai logon ke jeevan me shanti, samriddhi aur sakaratmak urja ka sanchar karna.
+            </p>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="row my-5">
+        <div class="col-12 text-center mb-3">
+            <h2 class="fw-bold">Our Experience</h2>
+            <hr class="w-25 mx-auto border-warning border-2">
+        </div>
+        <div class="col-lg-10 mx-auto">
+            <h4 class="experince_title text-warning mb-3">10+ Years of Experience in Vedic Puja & Astrology</h4>
+            <p class="text-secondary">
+                Pandit Shubham Ji ko 10+ varshon ka anubhav hai Vedic puja-path, havan aur jyotish vidya me. Unhone hazaron parivaron ke liye shuddh vidhi se dharmik anushthan sampann karaye hain aur logon ke jeevan me shanti aur samriddhi lane me madad ki hai.
+            </p>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="bg-light border border-warning rounded-4 p-4 text-center shadow-sm">
+                <h3 class="experince_title mb-2">Apni Puja Aaj Hi Book Karein</h3>
+                <p class="text-muted">Shuddh Vedic vidhi aur anubhav ke saath puja karwane ke liye sampark karein.</p>
+                <a href="{% url 'contact' %}" class="btn btn-warning px-4 py-2">📞 Sampark Karein</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
