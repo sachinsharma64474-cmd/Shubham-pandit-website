@@ -1,7 +1,10 @@
 {
-  "buildCommand": "python3 manage.py collectstatic --noinput",
-  "outputDirectory": "staticfiles",
-  "devCommand": "python manage.py runserver",
+  "builds": [
+    {
+      "src": "shubham_pandit/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
   "routes": [
     {
       "src": "/static/(.*)",
