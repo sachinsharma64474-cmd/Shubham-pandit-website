@@ -1,0 +1,142 @@
+/* ==========================
+   FOOTER
+========================== */
+
+.footer{
+
+    background:linear-gradient(135deg,#2c1b10,#4a2c1a);
+    color:#f5e9d6;
+    padding:50px 0 20px;
+    margin-top:60px;
+
+}
+
+.footer h4{
+
+    color:#ffcc70;
+    margin-bottom:20px;
+    font-weight:700;
+
+}
+
+.footer p{
+
+    color:#f5e9d6;
+    line-height:1.8;
+
+}
+
+.footer ul{
+
+    list-style:none;
+    padding:0;
+    margin:0;
+
+}
+
+.footer ul li{
+
+    margin-bottom:10px;
+
+}
+
+.footer a{
+
+    color:#f5e9d6;
+    text-decoration:none;
+    transition:.3s;
+
+}
+
+.footer a:hover{
+
+    color:#ffcc70;
+    padding-left:6px;
+
+}
+
+.footer hr{
+
+    border-color:rgba(255,255,255,.2);
+
+}
+
+.footer .text-center{
+
+    color:#ddd;
+    font-size:15px;
+
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media(max-width:991px){
+
+.footer{
+
+text-align:center;
+
+}
+
+.footer .row>div{
+
+margin-bottom:30px;
+
+}
+
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:768px){
+
+.footer{
+
+padding:40px 20px;
+
+}
+
+.footer h4{
+
+font-size:22px;
+
+}
+
+.footer p,
+.footer a{
+
+font-size:15px;
+
+}
+
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media(max-width:576px){
+
+.footer{
+
+padding:30px 15px;
+
+}
+
+.footer h4{
+
+font-size:20px;
+
+}
+
+.footer p{
+
+font-size:14px;
+
+}
+
+}

@@ -33,7 +33,7 @@ wheels/
 *.egg
 
 # Django
-/staticfiles/
+
 *.log
 local_settings.py
 

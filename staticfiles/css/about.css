@@ -1,0 +1,38 @@
+/* ABOUT PAGE STYLES */
+
+/* Clean horizontal dividers */
+hr {
+    border: 0;
+    height: 2px;
+    background-color: #ff9933; /* Matches site theme color */
+    margin: 1.5rem 0;
+    opacity: 0.8;
+}
+
+/* Section Subheadings */
+.experince_title {
+    font-weight: 700;
+    color: #2c3e50;
+    text-decoration: none;
+    border-bottom: 2px solid #ff9933;
+    display: inline-block;
+    padding-bottom: 4px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Subtle hover interaction */
+.experince_title:hover {
+    padding-left: 8px;
+    color: #e65100;
+    border-bottom-color: #e65100;
+}
+
+/* Call to Action Box Styling */
+.cta-box {
+    background: #fff8f0;
+    border: 1px solid #ffe0b2;
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
