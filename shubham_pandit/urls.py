@@ -4,6 +4,16 @@ from shubham_pandit import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
+from .sitemaps import StaticViewSitemap  # 'myapp' की जगह अपने App का नाम लिखें
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
+
 
 # Environment variable se dynamic admin URL fetch karein
 admin_path = getattr(settings, 'ADMIN_URL', 'admin/')

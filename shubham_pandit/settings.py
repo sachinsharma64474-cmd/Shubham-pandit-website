@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'heritage_places',
     "pooja_form",
     "Gallery",
+    'django.contrib.sitemaps',
 ]
 
 JAZZMIN_SETTINGS = {
