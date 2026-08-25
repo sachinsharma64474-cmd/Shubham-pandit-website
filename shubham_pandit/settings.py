@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
         'NAME': os.getenv('DB_NAME', 'defaultdb'),
         'USER': os.getenv('DB_USER', 'avnadmin'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'AVNS_Vy2bUKCigl-UXU2YlO0'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'AVNS_tDbEzgX4ZlPzfBf4TAE'),
         'HOST': os.getenv('DB_HOST', 'shubhampanditdb-shubhampanditwebsite.k.aivencloud.com'),
         'PORT': os.getenv('DB_PORT', '20485'),
         'OPTIONS': {
