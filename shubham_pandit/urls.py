@@ -5,7 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from django.views.generic import TemplateView  # <-- यह वाली लाइन जोड़ें
-
+from django.http import HttpResponse
 # Environment variable se dynamic admin URL fetch karein
 admin_path = getattr(settings, 'ADMIN_URL', 'admin/')
 
@@ -30,7 +30,7 @@ urlpatterns = [
     path('create-my-admin/', views.make_admin),
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
-    path('google22071821e5bd489e.html', TemplateView.as_view(template_name="google22071821e5bd489e.html")),
+    path('google22071821e5bd489e.html', lambda r: HttpResponse("google-site-verification: google22071821e5bd489e.html", content_type="text/html")),
 ]
 
 if settings.DEBUG:
