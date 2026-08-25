@@ -3,11 +3,14 @@ from django.urls import path
 from shubham_pandit import views
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path
-from django.views.generic import TemplateView  # <-- यह वाली लाइन जोड़ें
 from django.http import HttpResponse
+
 # Environment variable se dynamic admin URL fetch karein
 admin_path = getattr(settings, 'ADMIN_URL', 'admin/')
+
+# Google Verification Response (No Redirect, Pure Content)
+def google_verification(request):
+    return HttpResponse("google-site-verification: google22071821e5bd489e.html", content_type="text/plain")
 
 urlpatterns = [
     path(admin_path, admin.site.urls),
@@ -30,9 +33,11 @@ urlpatterns = [
     path('create-my-admin/', views.make_admin),
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
-    path('google22071821e5bd489e.html', lambda r: HttpResponse("google-site-verification: google22071821e5bd489e.html", content_type="text/html")),
+    
+    # Google Verification Fix (बिना किसी Redirect के)
+    path('google22071821e5bd489e.html', google_verification),
 ]
 
 if settings.DEBUG:
-  urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
