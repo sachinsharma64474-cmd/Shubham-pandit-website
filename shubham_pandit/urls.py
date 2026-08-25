@@ -26,7 +26,6 @@ urlpatterns = [
     path('api/contact/', views.contact_api, name="contact_api"),
     path('api/prices/', views.price_api, name="price_api"),
     path('create-my-admin/', views.make_admin),
-    path('google22071821e5bd489e.html', TemplateView.as_view(template_name="google22071821e5bd489e.html")),
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
 ]
