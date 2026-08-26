@@ -7,18 +7,29 @@ from django.http import HttpResponse
 
 # Sitemap imports
 from django.contrib.sitemaps import Sitemap
-from django.urls import reverse
+from django.contrib.sitemaps.views import sitemap
 
 class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = 'weekly'
-    protocol = 'https'  # 🌟 यह जोड़ना बहुत जरूरी है
+    protocol = 'https'
 
     def items(self):
         return ['home', 'about', 'contact', 'service', 'gallery', 'heritage']
 
     def location(self, item):
         return reverse(item)
+
+    # 🌟 Vercel Database 500 Error को रोकने के लिए
+    def get_urls(self, page=1, site=None, protocol=None):
+        class DummySite:
+            domain = 'shubham-pandit-website.vercel.app'
+            name = 'Shubham Pandit'
+        return super().get_urls(page=page, site=DummySite(), protocol='https')
+
+sitemaps = {
+    'static': StaticViewSitemap,
+}
 # Environment variable se dynamic admin URL fetch karein
 admin_path = getattr(settings, 'ADMIN_URL', 'admin/')
 
