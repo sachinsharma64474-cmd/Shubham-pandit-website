@@ -152,6 +152,8 @@ if not DEBUG:
 # Static files (CSS, JavaScript, Images)
 # settings.py
 
+# settings.py
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -159,29 +161,28 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# 🌟 Cloudinary Storage Setup (For Uploaded Media Files)
+# Cloudinary Setup (Media Files / Uploads के लिए)
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'ga3nlcvh'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY', '641478899823584'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
 }
 
-# 🌟 Backward Compatibility Keys for 'cloudinary_storage' package
+# 🌟 Legacy fallback attributes for Cloudinary Library compatibility
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-# 🌟 Django 4.2+ STORAGES Dict
+# 🌟 Django 4.2+ / 5.x STORAGES Configuration
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
 WHITENOISE_MANIFEST_STRICT = False
-
 # TinyMCE Configuration
 TINYMCE_DEFAULT_CONFIG = {
     "license_key": "gpl",
