@@ -5,3 +5,5 @@ python-dotenv
 pymysql
 cryptography
 whitenoise
+django-cloudinary-storage
+cloudinary

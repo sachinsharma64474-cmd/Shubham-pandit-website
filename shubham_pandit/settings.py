@@ -34,11 +34,7 @@ INSTALLED_APPS = [
 ]
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'ga3nlcvh'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '641478899823584'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
-}
+
 
 JAZZMIN_SETTINGS = {
     "site_title": "My Admin",
@@ -148,8 +144,19 @@ if not DEBUG:
 
 # WhiteNoise Configuration for Static Files
 # Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+# WhiteNoise Storage for Vercel Static Files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Cloudinary Storage for Media Files (Uploaded Images)
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
