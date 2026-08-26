@@ -1,4 +1,4 @@
-Django==5.2.3
+Django==5.1.5
 django-jazzmin
 django-tinymce
 python-dotenv

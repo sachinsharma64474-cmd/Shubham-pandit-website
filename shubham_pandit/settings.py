@@ -145,14 +145,15 @@ if not DEBUG:
 # WhiteNoise Configuration for Static Files
 # Static files (CSS, JavaScript, Images)
 # Static files (CSS, JavaScript, Images)
+# Static Files Setup for Vercel WhiteNoise
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# WhiteNoise Storage for Vercel Static Files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# 🌟 Strict Manifest Storage की जगह इसे यूज़ करें ताकि क्रैश न हो
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-# Cloudinary Storage for Media Files (Uploaded Images)
+# Cloudinary Setup for Uploaded Images
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
@@ -160,3 +161,9 @@ CLOUDINARY_STORAGE = {
     'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
+
+# SSL Connection Fix for Vercel
+if not DEBUG:
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
