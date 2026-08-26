@@ -6,14 +6,19 @@ from django.conf.urls.static import static
 from django.http import HttpResponse
 from .sitemaps import StaticViewSitemap  # 'myapp' की जगह अपने App का नाम लिखें
 
-sitemaps = {
-    'static': StaticViewSitemap,
-}
+class StaticViewSitemap(Sitemap):
+    priority = 0.8
+    changefreq = 'weekly'
+
+    def items(self):
+        return ['home', 'about', 'contact', 'service', 'gallery', 'heritage']
+
+    def location(self, item):
+        return reverse(item)
 
 sitemaps = {
     'static': StaticViewSitemap,
 }
-
 
 # Environment variable se dynamic admin URL fetch karein
 admin_path = getattr(settings, 'ADMIN_URL', 'admin/')

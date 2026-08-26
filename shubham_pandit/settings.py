@@ -29,7 +29,16 @@ INSTALLED_APPS = [
     "pooja_form",
     "Gallery",
     'django.contrib.sitemaps',
+    'cloudinary_storage',
+    'cloudinary',
 ]
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'ga3nlcvh'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '641478899823584'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
+}
 
 JAZZMIN_SETTINGS = {
     "site_title": "My Admin",
