@@ -43,7 +43,7 @@ urlpatterns = [
     path('search/', views.global_search, name="global_search"),
     path('book-pooja/', views.book_pooja, name='book_pooja'),
     path('book-pooja/<int:id>/', views.book_pooja, name='book_pooja_service'),
-
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     # APIs
     path('api/services/', views.service_api, name="service_api"),
     path('api/heritage/', views.heritage_api, name="heritage_api"),
