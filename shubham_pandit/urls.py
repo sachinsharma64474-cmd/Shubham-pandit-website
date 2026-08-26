@@ -1,12 +1,11 @@
 from django.contrib import admin
-from django.urls import path
-from django.urls import path, reverse
+from django.urls import path, reverse  # Ek saath path aur reverse import
 from shubham_pandit import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
-from .sitemaps import StaticViewSitemap  # 'myapp' की जगह अपने App का नाम लिखें
 
+# Sitemap imports
 from django.contrib.sitemaps import Sitemap
 from django.contrib.sitemaps.views import sitemap
 
@@ -44,6 +43,7 @@ urlpatterns = [
     path('book-pooja/', views.book_pooja, name='book_pooja'),
     path('book-pooja/<int:id>/', views.book_pooja, name='book_pooja_service'),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+
     # APIs
     path('api/services/', views.service_api, name="service_api"),
     path('api/heritage/', views.heritage_api, name="heritage_api"),
@@ -53,7 +53,7 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('gallery/', views.gallery, name='gallery'),
     
-    # Google Verification Fix (बिना किसी Redirect के)
+    # Google Verification Fix
     path('google22071821e5bd489e.html', google_verification),
 ]
 
