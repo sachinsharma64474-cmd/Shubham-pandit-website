@@ -149,54 +149,39 @@ if not DEBUG:
 # Static files (CSS, JavaScript, Images)
 # Static files (CSS, JavaScript, Images)
 # Static Files Setup for Vercel WhiteNoise
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# 🌟 Strict Manifest Storage की जगह इसे यूज़ करें ताकि क्रैश न हो
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Cloudinary Setup for Uploaded Images
-# Cloudinary Setup for Uploaded Images
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
+# Cloudinary Setup
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'ga3nlcvh'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY', '641478899823584'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
 }
 
-WHITENOISE_MANIFEST_STRICT = False
-
-# 2. Static files Storage बदलें (CompressedStaticFilesStorage इस्तेमाल करें)
+# 🌟 Direct Standard Storage Settings (Django 5.x compatible)
+# Note: Old STATICFILES_STORAGE and DEFAULT_FILE_STORAGE are replaced by STORAGES dict.
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
 
-# SSL Connection Fix for Vercel
-if not DEBUG:
-    SECURE_SSL_REDIRECT = False
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+WHITENOISE_MANIFEST_STRICT = False
 
-
-
-
-# settings.py
-
+# TinyMCE Configuration
 TINYMCE_DEFAULT_CONFIG = {
     "license_key": "gpl",
     "theme": "silver",
     "height": 500,
     "menubar": True,
-    # 🌟 Removed 'print' and 'paste' plugins (as they are deprecated in newer TinyMCE)
     "plugins": "advlist autolink lists link image charmap preview anchor "
-               "searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount",
+               "searchreplace visualblocks code fullscreen insertdatetime media table help wordcount",
     "toolbar": "undo redo | formatselect | "
                "bold italic backcolor | alignleft aligncenter "
                "alignright alignjustify | bullist numlist outdent indent | "
