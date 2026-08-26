@@ -175,13 +175,16 @@ if not DEBUG:
 
 
 
+# settings.py
+
 TINYMCE_DEFAULT_CONFIG = {
-    "license_key": "gpl",  # 👈 Is line ko add karne se warning hat jayegi
+    "license_key": "gpl",
     "theme": "silver",
     "height": 500,
     "menubar": True,
-    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
-               "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,code,help,wordcount",
+    # 🌟 Removed 'print' and 'paste' plugins (as they are deprecated in newer TinyMCE)
+    "plugins": "advlist autolink lists link image charmap preview anchor "
+               "searchreplace visualblocks code fullscreen insertdatetime media table code help wordcount",
     "toolbar": "undo redo | formatselect | "
                "bold italic backcolor | alignleft aligncenter "
                "alignright alignjustify | bullist numlist outdent indent | "
