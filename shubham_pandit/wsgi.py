@@ -1,27 +1,14 @@
-"""
-WSGI config for shubham_pandit project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
-"""
-
 import os
+import pymysql
 
-from django.core.wsgi import get_wsgi_application
+# Aiven MySQL ke liye driver bind karein (Settings load hone se PEHLE)
+pymysql.install_as_MySQLdb()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shubham_pandit.settings')
 
-application = get_wsgi_application()
-
-
-import os
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'shubham_pandit.settings')
-
 application = get_wsgi_application()
 
-# Vercel Serverless Function ke liye zaroori hai
+# Vercel Serverless Function handler
 app = application
