@@ -7,3 +7,4 @@ cryptography
 whitenoise
 django-cloudinary-storage
 cloudinary
+Pillow
