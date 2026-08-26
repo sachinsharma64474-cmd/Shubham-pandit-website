@@ -33,10 +33,10 @@ INSTALLED_APPS = [
     'heritage_places',
     "pooja_form",
     "Gallery",
-    'django.contrib.sitemaps',
+    'django.contrib.sites',
 ]
 
-
+SITE_ID = 1
 
 
 JAZZMIN_SETTINGS = {

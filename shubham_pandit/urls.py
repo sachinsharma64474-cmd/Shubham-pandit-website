@@ -6,23 +6,12 @@ from django.conf.urls.static import static
 from django.http import HttpResponse
 
 # Sitemap imports
-from django.contrib.sitemaps import Sitemap
 from django.contrib.sitemaps.views import sitemap
-
-class StaticViewSitemap(Sitemap):
-    priority = 0.8
-    changefreq = 'weekly'
-
-    def items(self):
-        return ['home', 'about', 'contact', 'service', 'gallery', 'heritage']
-
-    def location(self, item):
-        return reverse(item)
+from .sitemap import StaticViewSitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
 }
-
 # Environment variable se dynamic admin URL fetch karein
 admin_path = getattr(settings, 'ADMIN_URL', 'admin/')
 
