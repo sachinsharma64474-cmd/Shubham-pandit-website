@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "pooja_form",
     "Gallery",
     'django.contrib.sites',
+    'django.contrib.sitemaps',
 ]
 
 SITE_ID = 1
