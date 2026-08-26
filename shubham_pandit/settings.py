@@ -166,6 +166,15 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
 }
 
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
 # SSL Connection Fix for Vercel
 if not DEBUG:
     SECURE_SSL_REDIRECT = False
