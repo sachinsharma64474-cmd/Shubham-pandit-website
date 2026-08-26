@@ -22,17 +22,20 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    
+    # 🌟 Cloudinary को staticfiles से पहले होना ज़रूरी है
+    'cloudinary_storage',
     "django.contrib.staticfiles",
+    'cloudinary',
+
     'tinymce',
     'pooja_service',
     'heritage_places',
     "pooja_form",
     "Gallery",
     'django.contrib.sitemaps',
-    'cloudinary_storage',
-    'cloudinary',
 ]
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 
 
@@ -154,12 +157,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # Cloudinary Setup for Uploaded Images
+# Cloudinary Setup for Uploaded Images
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME','ga3nlcvh'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY','641478899823584'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET','uNkkKvDzXu3L_xMMM6jgaqWNagw'),
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'ga3nlcvh'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY', '641478899823584'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
 }
 
 # SSL Connection Fix for Vercel
