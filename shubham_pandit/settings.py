@@ -167,3 +167,19 @@ if not DEBUG:
     SECURE_SSL_REDIRECT = False
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
+
+
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    "license_key": "gpl",  # 👈 Is line ko add karne se warning hat jayegi
+    "theme": "silver",
+    "height": 500,
+    "menubar": True,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+               "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,code,help,wordcount",
+    "toolbar": "undo redo | formatselect | "
+               "bold italic backcolor | alignleft aligncenter "
+               "alignright alignjustify | bullist numlist outdent indent | "
+               "removeformat | help",
+}
