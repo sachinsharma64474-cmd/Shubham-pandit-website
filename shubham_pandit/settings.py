@@ -150,25 +150,33 @@ if not DEBUG:
 # Static files (CSS, JavaScript, Images)
 # Static Files Setup for Vercel WhiteNoise
 # Static files (CSS, JavaScript, Images)
+# settings.py
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Cloudinary Setup
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# 🌟 Cloudinary Storage Setup (For Uploaded Media Files)
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME', 'ga3nlcvh'),
     'API_KEY': os.getenv('CLOUDINARY_API_KEY', '641478899823584'),
     'API_SECRET': os.getenv('CLOUDINARY_API_SECRET', 'uNkkKvDzXu3L_xMMM6jgaqWNagw'),
 }
 
-# 🌟 Direct Standard Storage Settings (Django 5.x compatible)
-# Note: Old STATICFILES_STORAGE and DEFAULT_FILE_STORAGE are replaced by STORAGES dict.
+# 🌟 Backward Compatibility Keys for 'cloudinary_storage' package
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+# 🌟 Django 4.2+ STORAGES Dict
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
-    "STATICFILES_DIRS": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 
