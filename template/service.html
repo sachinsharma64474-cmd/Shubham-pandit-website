@@ -6,158 +6,108 @@
 <section class="container py-5">
 
     <!-- Heading -->
-
-    <div class="text-center mb-5">
-
+    <div class="text-center mb-4">
         <h1 class="fw-bold text-success">
             🕉️ Our Pooja Services
         </h1>
-
         <p class="text-muted">
             Choose the best Vedic Pooja according to your need.
         </p>
-
     </div>
 
-    <!-- No Search Result -->
-
-    <div id="noMatchMessage"
-         class="alert alert-warning text-center"
-         style="display:none;">
-
-        No Pooja Service Found.
-
+    <!-- 🌟 NAYA ADDITION: Search Box & Clear Button -->
+    <div class="row justify-content-center mb-5">
+        <div class="col-md-6 col-lg-5">
+            <div class="input-group shadow-sm rounded-pill overflow-hidden">
+                <input type="text" id="searchInput" class="form-control border-0 px-4 py-2" placeholder="Search Pooja by name..." autocomplete="off">
+                <button class="btn btn-success px-4" type="button" id="searchBtn">
+                    🔍 Search
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="row g-4">
+    <!-- No Match Alert (JS Toggle) -->
+    <div id="noMatchMessage" class="alert alert-warning text-center rounded-4 mb-4" style="display:none;">
+        No Pooja Service Found matching your search.
+    </div>
+
+    <div class="row g-4" id="poojaGrid">
 
         {% for s in k %}
 
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12"
-             data-type="searchable-card">
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 searchable-card" data-title="{{ s.title|lower }}">
 
             <div class="card h-100 shadow border-0 rounded-4">
 
                 {% if s.img %}
-
-                <img src="{{ s.img.url }}"
-                     class="card-img-top service-img"
-                     alt="{{ s.title }}">
-
+                <img src="{{ s.img.url }}" class="card-img-top service-img" alt="{{ s.title }}" style="height: 220px; object-fit: cover;">
                 {% endif %}
 
                 <div class="card-body d-flex flex-column">
 
                     {% if s.badge %}
-
                     <span class="badge bg-danger align-self-start mb-2">
                         {{ s.badge }}
                     </span>
-
                     {% endif %}
 
-                    <h4 class="fw-bold">
-
+                    <h4 class="fw-bold card-title-text">
                         {{ s.title }}
-
                     </h4>
 
                     <p class="text-muted">
-
                         {{ s.describe|striptags|truncatewords:20 }}
-
                     </p>
 
                     <hr>
 
                     <h5>
-
                         {% if s.discount_price %}
-
                         <span class="text-danger fw-bold fs-4">
-
                             ₹{{ s.discount_price }}
-
                         </span>
-
-                        <del class="text-muted">
-
+                        <del class="text-muted fs-6">
                             ₹{{ s.price }}
-
                         </del>
-
                         {% else %}
-
                         <span class="text-success fw-bold fs-4">
-
                             ₹{{ s.price }}
-
                         </span>
-
                         {% endif %}
-
                     </h5>
 
                     {% if s.duration %}
-
                     <p class="mb-2">
-
-                        ⏰ <strong>Duration:</strong>
-
-                        {{ s.duration }}
-
+                        ⏰ <strong>Duration:</strong> {{ s.duration }}
                     </p>
-
                     {% endif %}
 
                     <p class="mb-2">
-
                         {% if s.samagri_included %}
-
                         ✅ Samagri Included
-
                         {% else %}
-
                         ❌ Samagri Not Included
-
                         {% endif %}
-
                     </p>
 
-                    <p>
-
+                    <p class="mb-3">
                         {% if s.is_online_available %}
-
                         📹 Online Available
-
                         {% else %}
-
                         🛕 Offline Only
-
                         {% endif %}
-
                     </p>
 
                     <div class="mt-auto">
-
                         <div class="d-grid gap-2">
-
-                            <a href="{% url 'pooja_detail' s.id %}"
-                               class="btn btn-success">
-
+                            <a href="{% url 'pooja_detail' s.id %}" class="btn btn-outline-success rounded-3 fw-bold">
                                 View Details
-
                             </a>
-
-                            <a href="{% url 'book_pooja_service' s.id %}"
-                               class="btn btn-primary">
-
+                            <a href="{% url 'book_pooja_service' s.id %}" class="btn btn-success rounded-3 fw-bold">
                                 Book Now
-
                             </a>
-
                         </div>
-
                     </div>
 
                 </div>
@@ -169,13 +119,9 @@
         {% empty %}
 
         <div class="col-12">
-
-            <div class="alert alert-warning text-center">
-
+            <div class="alert alert-warning text-center rounded-4">
                 No Pooja Service Available.
-
             </div>
-
         </div>
 
         {% endfor %}
@@ -184,8 +130,37 @@
 
 </section>
 
+<!-- 🌟 NAYA ADDITION: Instant JS Live Search Script -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    const cards = document.querySelectorAll(".searchable-card");
+    const noMatchMessage = document.getElementById("noMatchMessage");
+
+    function filterServices() {
+        const query = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const title = card.getAttribute("data-title") || "";
+            if (title.includes(query)) {
+                card.style.display = "";
+                visibleCount++;
+            } else {
+                card.style.display = "none";
+            }
+        });
+
+        if (visibleCount === 0 && cards.length > 0) {
+            noMatchMessage.style.display = "block";
+        } else {
+            noMatchMessage.style.display = "none";
+        }
+    }
+
+    searchInput.addEventListener("keyup", filterServices);
+    searchInput.addEventListener("input", filterServices);
+});
+</script>
+
 {% endblock %}
-
-
-
-
