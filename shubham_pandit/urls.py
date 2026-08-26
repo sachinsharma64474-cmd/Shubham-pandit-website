@@ -6,6 +6,9 @@ from django.conf.urls.static import static
 from django.http import HttpResponse
 from .sitemaps import StaticViewSitemap  # 'myapp' की जगह अपने App का नाम लिखें
 
+from django.contrib.sitemaps import Sitemap
+from django.contrib.sitemaps.views import sitemap
+
 class StaticViewSitemap(Sitemap):
     priority = 0.8
     changefreq = 'weekly'
